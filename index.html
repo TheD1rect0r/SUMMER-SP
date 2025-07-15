@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年夏季休暇制度について</title>
+    <style>
+        /* リセットCSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* モバイルファーストベース設計 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.7;
+            color: #2D4A4B;
+            background: #E8F4F5;
+            min-height: 100vh;
+            font-size: 18px; /* スマホ基準 */
+        }
+
+        /* パスワード保護画面 */
+        .password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(232, 244, 245, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .password-box {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(45, 74, 75, 0.2);
+            text-align: center;
+            border: 3px solid #5F9EA0;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .password-box h2 {
+            color: #2D4A4B;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .password-box p {
+            color: #2D4A4B;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .password-box input {
+            width: 100%;
+            padding: 16px;
+            border: 3px solid #5F9EA0;
+            border-radius: 8px;
+            font-size: 1.1em;
+            margin: 15px 0;
+            outline: none;
+            background: white;
+            color: #2D4A4B;
+        }
+
+        .password-box input:focus {
+            border-color: #2D4A4B;
+            box-shadow: 0 0 0 3px rgba(95, 158, 160, 0.2);
+        }
+
+        .password-box button {
+            background: #5F9EA0;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+            min-height: 48px;
+            min-width: 120px;
+        }
+
+        .password-box button:hover {
+            background: #2D4A4B;
+        }
+
+        .password-box button:active {
+            transform: translateY(1px);
+        }
+
+        /* メインコンテンツ */
+        .content {
+            display: none;
+            padding: 20px 15px;
+        }
+
+        .content.unlocked {
+            display: block;
+        }
+
+        .slide {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(45, 74, 75, 0.1);
+            margin-bottom: 20px;
+            border-left: 6px solid #5F9EA0;
+        }
+
+        /* 見出し設定 */
+        .slide h1 {
+            font-size: 2.2em;
+            color: #2D4A4B;
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #5F9EA0;
+            padding-bottom: 15px;
+        }
+
+        .slide h2 {
+            font-size: 1.8em;
+            color: #2D4A4B;
+            margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 4px solid #5F9EA0;
+        }
+
+        .slide h3 {
+            font-size: 1.5em;
+            color: #2D4A4B;
+            margin-bottom: 15px;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #2D4A4B;
+        }
+
+        /* ボックス要素 */
+        .important-box {
+            background: #5F9EA0;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .important-box h3,
+        .important-box p,
+        .important-box li,
+        .important-box strong {
+            color: white !important;
+        }
+
+        .info-box {
+            background: white;
+            border: 2px solid #5F9EA0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .warning-box {
+            background: #2D4A4B;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .warning-box h3,
+        .warning-box p,
+        .warning-box li,
+        .warning-box strong {
+            color: white !important;
+        }
+
+        .period-box {
+            background: #1A365D;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .period-box h3,
+        .period-box p,
+        .period-box li,
+        .period-box strong {
+            color: white !important;
+        }
+
+        /* カード形式テーブル（スマホ用） */
+        .card-table {
+            display: block;
+            margin: 20px 0;
+        }
+
+        .card-row {
+            background: white;
+            border: 2px solid #5F9EA0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .card-row h4 {
+            color: #5F9EA0;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #E8F4F5;
+            padding-bottom: 5px;
+        }
+
+        .card-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .card-item:last-child {
+            border-bottom: none;
+        }
+
+        .card-label {
+            font-weight: bold;
+            color: #2D4A4B;
+            flex: 1;
+        }
+
+        .card-value {
+            flex: 1;
+            text-align: right;
+            color: #2D4A4B;
+        }
+
+        .card-value.existing-vacation {
+            background: #FFF5F5;
+            color: #C53030;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .card-value.summer-vacation {
+            background: #F0FFF4;
+            color: #2F855A;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .card-value.ok {
+            background: #E6FFFA;
+            color: #2F855A;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .card-value.ng {
+            background: #FED7D7;
+            color: #C53030;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* 通常のテーブル（タブレット以上で表示） */
+        .desktop-table {
+            display: none;
+        }
+
+        /* ハイライト */
+        .highlight {
+            background: #2D4A4B;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* リスト */
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #2D4A4B;
+        }
+
+        /* フロー */
+        .flow-step {
+            background: white;
+            border: 2px solid #5F9EA0;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .department-section {
+            background: white;
+            border: 2px solid #5F9EA0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .department-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: white;
+            background: #5F9EA0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .count-check {
+            background: #E8F4F5;
+            border: 2px solid #5F9EA0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .count-check h4 {
+            color: #2D4A4B;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .count-check ul {
+            font-size: 1em;
+            margin-bottom: 0;
+        }
+
+        .count-check li {
+            margin-bottom: 5px;
+            color: #2D4A4B;
+        }
+
+        .summary-box {
+            background: #2D4A4B;
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .summary-box h3,
+        .summary-box p,
+        .summary-box span {
+            color: white !important;
+        }
+
+        /* タブレット用調整 */
+        @media (min-width: 768px) {
+            body {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 30px 25px;
+            }
+
+            .slide {
+                padding: 35px 30px;
+            }
+
+            .slide h1 {
+                font-size: 2.6em;
+            }
+
+            .slide h2 {
+                font-size: 2em;
+            }
+
+            .slide h3 {
+                font-size: 1.6em;
+            }
+
+            .password-box {
+                padding: 40px 30px;
+                max-width: 500px;
+            }
+
+            /* タブレットでは一部テーブル表示 */
+            .card-table.show-table {
+                display: none;
+            }
+
+            .desktop-table.show-table {
+                display: table;
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                font-size: 1em;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(45, 74, 75, 0.1);
+            }
+
+            .desktop-table th {
+                background: #5F9EA0;
+                color: white;
+                padding: 12px 8px;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .desktop-table td {
+                padding: 12px 8px;
+                text-align: center;
+                border-bottom: 1px solid #E8F4F5;
+                color: #2D4A4B;
+            }
+
+            .desktop-table tr:nth-child(even) {
+                background: #F8F9FA;
+            }
+
+            .desktop-table .existing-vacation {
+                background: #FFF5F5 !important;
+                color: #C53030 !important;
+                font-weight: bold;
+            }
+
+            .desktop-table .summer-vacation {
+                background: #F0FFF4 !important;
+                color: #2F855A !important;
+                font-weight: bold;
+            }
+
+            .desktop-table .ok {
+                background: #E6FFFA !important;
+                color: #2F855A !important;
+                font-weight: bold;
+            }
+
+            .desktop-table .ng {
+                background: #FED7D7 !important;
+                color: #C53030 !important;
+                font-weight: bold;
+            }
+        }
+
+        /* PC用調整 */
+        @media (min-width: 1024px) {
+            body {
+                font-size: 22px;
+            }
+
+            .content {
+                padding: 40px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .slide {
+                padding: 45px 40px;
+            }
+
+            .slide h1 {
+                font-size: 3em;
+            }
+
+            .slide h2 {
+                font-size: 2.4em;
+            }
+
+            .slide h3 {
+                font-size: 1.8em;
+            }
+
+            .password-box {
+                padding: 50px 40px;
+                max-width: 600px;
+            }
+
+            .desktop-table th {
+                padding: 15px 12px;
+            }
+
+            .desktop-table td {
+                padding: 15px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- パスワード保護画面 -->
+    <div class="password-overlay" id="passwordOverlay">
+        <div class="password-box">
+            <h2>🔒 認証が必要です</h2>
+            <input type="password" id="passwordInput" placeholder="Macのログインパスワードを入力" autocomplete="off">
+            <br>
+            <button onclick="checkPassword()">ログイン</button>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="content" id="mainContent">
+        <!-- スライド1: タイトル・制度変更の背景 -->
+        <div class="slide">
+            <h1>2025年夏季休暇制度について</h1>
+            <h2>制度変更の背景</h2>
+            <div class="info-box">
+                <h3>🔄 従来の制度</h3>
+                <p>これまで当院では、他院のお盆休み相当分を<strong>9月・10月に別途設けて</strong>クリニックとしての夏季休業としていました。</p>
+            </div>
+            <div class="important-box">
+                <h3>🎯 2025年の新制度</h3>
+                <p>クリニック一斉休業を廃止し、各職員が<strong>個別に3日間の夏季休暇</strong>を取得する制度に変更します。</p>
+            </div>
+        </div>
+
+        <!-- スライド2: なぜ3日間なのか -->
+        <div class="slide">
+            <h2>なぜ3日間なのか？</h2>
+            <h3>📅 2025年お盆期間と当院休診日の関係</h3>
+            
+            <!-- スマホ用カード表示 -->
+            <div class="card-table">
+                <div class="card-row">
+                    <h4>8月13日（水）</h4>
+                    <div class="card-item">
+                        <span class="card-label">期間</span>
+                        <span class="card-value">お盆入り</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">当院状況</span>
+                        <span class="card-value">通常診療</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">判定</span>
+                        <span class="card-value ok">診療日</span>
+                    </div>
+                </div>
+                
+                <div class="card-row">
+                    <h4>8月14日（木）</h4>
+                    <div class="card-item">
+                        <span class="card-label">期間</span>
+                        <span class="card-value">お盆期間</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">当院状況</span>
+                        <span class="card-value">定休日</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">判定</span>
+                        <span class="card-value ng">もともと休診</span>
+                    </div>
+                </div>
+                
+                <div class="card-row">
+                    <h4>8月15日（金）</h4>
+                    <div class="card-item">
+                        <span class="card-label">期間</span>
+                        <span class="card-value">お盆期間</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">当院状況</span>
+                        <span class="card-value">通常診療</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">判定</span>
+                        <span class="card-value ok">診療日</span>
+                    </div>
+                </div>
+                
+                <div class="card-row">
+                    <h4>8月16日（土）</h4>
+                    <div class="card-item">
+                        <span class="card-label">期間</span>
+                        <span class="card-value">お盆明け</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">当院状況</span>
+                        <span class="card-value">通常診療</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">判定</span>
+                        <span class="card-value ok">診療日</span>
+                    </div>
+                </div>
+                
+                <div class="card-row">
+                    <h4>8月17日（日）</h4>
+                    <div class="card-item">
+                        <span class="card-label">期間</span>
+                        <span class="card-value">-</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">当院状況</span>
+                        <span class="card-value">定休日</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">判定</span>
+                        <span class="card-value ng">もともと休診</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- タブレット・PC用テーブル -->
+            <table class="desktop-table show-table">
+                <tr>
+                    <th>日付</th>
+                    <th>曜日</th>
+                    <th>お盆期間</th>
+                    <th>当院の状況</th>
+                    <th>判定</th>
+                </tr>
+                <tr>
+                    <td>8月13日</td>
+                    <td>水曜日</td>
+                    <td>お盆入り</td>
+                    <td>通常診療</td>
+                    <td class="ok">診療日</td>
+                </tr>
+                <tr>
+                    <td>8月14日</td>
+                    <td>木曜日</td>
+                    <td>お盆期間</td>
+                    <td>定休日</td>
+                    <td class="ng">もともと休診</td>
+                </tr>
+                <tr>
+                    <td>8月15日</td>
+                    <td>金曜日</td>
+                    <td>お盆期間</td>
+                    <td>通常診療</td>
+                    <td class="ok">診療日</td>
+                </tr>
+                <tr>
+                    <td>8月16日</td>
+                    <td>土曜日</td>
+                    <td>お盆明け</td>
+                    <td>通常診療</td>
+                    <td class="ok">診療日</td>
+                </tr>
+                <tr>
+                    <td>8月17日</td>
+                    <td>日曜日</td>
+                    <td>-</td>
+                    <td>定休日</td>
+                    <td class="ng">もともと休診</td>
+                </tr>
+            </table>
+            
+            <div class="summary-box">
+                お盆期間5日間のうち、実際の診療日は3日間<br>
+                <span class="highlight">水曜日・金曜日・土曜日</span>
+            </div>
+        </div>
+
+        <!-- スライド3: 提出方法の宣言 -->
+        <div class="slide">
+            <h2>提出方法</h2>
+            <div class="important-box">
+                <h3>📊 Googleスプレッドシートで一括管理</h3>
+                <p><strong>部署内で調整・確定 → まとめてシート提出</strong></p>
+                <p>個別申請ではなく、スプレッドシートによる一元管理で実施します</p>
+            </div>
+            <div class="period-box">
+                <h3>📅 休暇取得の希望対象となる期間</h3>
+                <p><strong>9月1日から11月30日まで</strong></p>
+                <p>（申請締切は8月31日、以降の変更は認めないので注意）</p>
+            </div>
+            <div class="warning-box">
+                <h3>⚠️ 申請締切ルール</h3>
+                <p><strong>申請締め切りを2025年8月31日とし、申請内容は8月31日時点のスプレッドシートの内容で判断します</strong></p>
+            </div>
+        </div>
+
+        <!-- スライド4: 夏季休暇の基本情報 -->
+        <div class="slide">
+            <h2>夏季休暇の基本情報</h2>
+            
+            <!-- スマホ用カード表示 -->
+            <div class="card-table">
+                <div class="card-row">
+                    <h4>基本情報</h4>
+                    <div class="card-item">
+                        <span class="card-label">付与日数</span>
+                        <span class="card-value highlight">3日間</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">性質</span>
+                        <span class="card-value">年次有給休暇とは別の特別休暇</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">取得期限</span>
+                        <span class="card-value highlight">2025年11月30日まで</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">申請締切</span>
+                        <span class="card-value highlight">2025年8月31日</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">連続取得</span>
+                        <span class="card-value">休診日（木曜・日曜）とくっつけて取得可能</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- タブレット・PC用テーブル -->
+            <table class="desktop-table show-table">
+                <tr>
+                    <th>項目</th>
+                    <th>内容</th>
+                </tr>
+                <tr>
+                    <td><strong>付与日数</strong></td>
+                    <td><span class="highlight">3日間</span></td>
+                </tr>
+                <tr>
+                    <td><strong>性質</strong></td>
+                    <td>年次有給休暇とは別の特別休暇</td>
+                </tr>
+                <tr>
+                    <td><strong>取得期限</strong></td>
+                    <td><span class="highlight">2025年11月30日まで</span></td>
+                </tr>
+                <tr>
+                    <td><strong>申請締切</strong></td>
+                    <td><span class="highlight">2025年8月31日</span></td>
+                </tr>
+                <tr>
+                    <td><strong>連続取得</strong></td>
+                    <td>休診日（木曜・日曜）とくっつけて取得可能</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- スライド5: 重要な優先原則 -->
+        <div class="slide">
+            <h2>重要な優先原則</h2>
+            <div class="important-box">
+                <h3>🚨 絶対的な優先原則</h3>
+                <p><strong>先に院長の許可を得て確定している休暇が優先</strong></p>
+                <p>（有給休暇・欠勤・夏季休暇を問わず）</p>
+            </div>
+            <div class="warning-box">
+                <h3>⚠️ 双方向ルール</h3>
+                <p><strong>夏季休暇希望時</strong>：既存の有給・欠勤があれば制限対象</p>
+                <p><strong>有給・欠勤希望時</strong>：既存の夏季休暇があれば制限対象</p>
+                <p>どちらの方向でも同じルールで運用します</p>
+            </div>
+            <div class="info-box">
+                <h3>📋 基本制限</h3>
+                <ul>
+                    <li><strong>看護側・事務側それぞれで同日2人まで</strong></li>
+                    <li>看護側2人 + 事務側2人 = 同日最大4人まで取得可能</li>
+                    <li><strong>確定している休暇が絶対的に優先</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- スライド6: 看護師用スプレッドシート例 -->
+        <div class="slide">
+            <h2>看護師用スプレッドシート例</h2>
+            <div class="department-section">
+                <div class="department-title">🩺 看護師用テーブル</div>
+                <div class="info-box">
+                    <p><strong>赤色背景</strong>：確定済み有給休暇　<strong>緑色背景</strong>：夏季休暇</p>
+                </div>
+                
+                <!-- スマホ用カード表示 -->
+                <div class="card-table">
+                    <div class="card-row">
+                        <h4>看護師A</h4>
+                        <div class="card-item">
+                            <span class="card-label">9/2(火)</span>
+                            <span class="card-value existing-vacation">確定済み有給</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/5(金)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/10(水)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">備考</span>
+                            <span class="card-value">有給1日+夏季2日</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-row">
+                        <h4>看護師B</h4>
+                        <div class="card-item">
+                            <span class="card-label">9/1(月)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/3(水)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/9(火)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">備考</span>
+                            <span class="card-value">夏季3日</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-row">
+                        <h4>看護師C</h4>
+                        <div class="card-item">
+                            <span class="card-label">9/8(月)</span>
+                            <span class="card-value existing-vacation">確定済み有給</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/9(火)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/12(金)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">備考</span>
+                            <span class="card-value">有給1日+夏季2日</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- タブレット・PC用テーブル -->
+                <table class="desktop-table show-table">
+                    <tr>
+                        <th>職員名</th>
+                        <th>9/1(月)</th>
+                        <th>9/2(火)</th>
+                        <th>9/3(水)</th>
+                        <th>9/5(金)</th>
+                        <th>9/8(月)</th>
+                        <th>9/9(火)</th>
+                        <th>9/10(水)</th>
+                        <th>9/12(金)</th>
+                        <th>備考</th>
+                    </tr>
+                    <tr>
+                        <td>看護師A</td>
+                        <td>-</td>
+                        <td class="existing-vacation">確定済み有給</td>
+                        <td>-</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td>有給1日+夏季2日</td>
+                    </tr>
+                    <tr>
+                        <td>看護師B</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>夏季3日</td>
+                    </tr>
+                    <tr>
+                        <td>看護師C</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="existing-vacation">確定済み有給</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>有給1日+夏季2日</td>
+                    </tr>
+                </table>
+                
+                <div class="count-check">
+                    <h4>📊 カウント確認</h4>
+                    <ul>
+                        <li><strong>9/1（月）</strong>: 看護師B（夏季）= 1人 ✅</li>
+                        <li><strong>9/2（火）</strong>: 看護師A（有給）= 1人 ✅</li>
+                        <li><strong>9/3（水）</strong>: 看護師B（夏季）= 1人 ✅</li>
+                        <li><strong>9/5（金）</strong>: 看護師A（夏季）= 1人 ✅</li>
+                        <li><strong>9/8（月）</strong>: 看護師C（有給）= 1人 ✅</li>
+                        <li><strong>9/9（火）</strong>: 看護師C（夏季）= 1人 ✅</li>
+                        <li><strong>9/10（水）</strong>: 看護師A（夏季）= 1人 ✅</li>
+                        <li><strong>9/12（金）</strong>: 看護師C（夏季）= 1人 ✅</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド7: 事務員用スプレッドシート例 -->
+        <div class="slide">
+            <h2>事務員用スプレッドシート例</h2>
+            <div class="department-section">
+                <div class="department-title">💼 事務員用テーブル</div>
+                <div class="info-box">
+                    <p><strong>赤色背景</strong>：確定済み有給休暇　<strong>緑色背景</strong>：夏季休暇</p>
+                </div>
+                
+                <!-- スマホ用カード表示 -->
+                <div class="card-table">
+                    <div class="card-row">
+                        <h4>事務員A</h4>
+                        <div class="card-item">
+                            <span class="card-label">9/1(月)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/3(水)</span>
+                            <span class="card-value existing-vacation">確定済み有給</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/5(金)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/12(金)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">備考</span>
+                            <span class="card-value">有給1日+夏季3日</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-row">
+                        <h4>事務員B</h4>
+                        <div class="card-item">
+                            <span class="card-label">9/2(火)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/8(月)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">9/9(火)</span>
+                            <span class="card-value summer-vacation">夏季休暇</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">備考</span>
+                            <span class="card-value">夏季3日</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-row">
+                        <h4>事務員C</h4>
+                        <div class="card-item">
+                            <span class="card-label">9/10(水)</span>
+                            <span class="card-value existing-vacation">確定済み有給</span>
+                        </div>
+                        <div class="card-item">
+                            <span class="card-label">備考</span>
+                            <span class="card-value">有給1日（夏季は後日）</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- タブレット・PC用テーブル -->
+                <table class="desktop-table show-table">
+                    <tr>
+                        <th>職員名</th>
+                        <th>9/1(月)</th>
+                        <th>9/2(火)</th>
+                        <th>9/3(水)</th>
+                        <th>9/5(金)</th>
+                        <th>9/8(月)</th>
+                        <th>9/9(火)</th>
+                        <th>9/10(水)</th>
+                        <th>9/12(金)</th>
+                        <th>備考</th>
+                    </tr>
+                    <tr>
+                        <td>事務員A</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td class="existing-vacation">確定済み有給</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>有給1日+夏季3日</td>
+                    </tr>
+                    <tr>
+                        <td>事務員B</td>
+                        <td>-</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td class="summer-vacation">夏季休暇</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>夏季3日</td>
+                    </tr>
+                    <tr>
+                        <td>事務員C</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td class="existing-vacation">確定済み有給</td>
+                        <td>-</td>
+                        <td>有給1日（夏季は後日）</td>
+                    </tr>
+                </table>
+                
+                <div class="count-check">
+                    <h4>📊 カウント確認</h4>
+                    <ul>
+                        <li><strong>9/1（月）</strong>: 事務員A（夏季）= 1人 ✅</li>
+                        <li><strong>9/2（火）</strong>: 事務員B（夏季）= 1人 ✅</li>
+                        <li><strong>9/3（水）</strong>: 事務員A（有給）= 1人 ✅</li>
+                        <li><strong>9/5（金）</strong>: 事務員A（夏季）= 1人 ✅</li>
+                        <li><strong>9/8（月）</strong>: 事務員B（夏季）= 1人 ✅</li>
+                        <li><strong>9/9（火）</strong>: 事務員B（夏季）= 1人 ✅</li>
+                        <li><strong>9/10（水）</strong>: 事務員C（有給）= 1人 ✅</li>
+                        <li><strong>9/12（金）</strong>: 事務員A（夏季）= 1人 ✅</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド8: 申請締切ルール -->
+        <div class="slide">
+            <h2>申請締切ルール</h2>
+            <div class="important-box">
+                <h3>📅 申請締切と判定基準</h3>
+                <p><strong>申請締め切りを2025年8月31日とし、申請内容は8月31日時点のスプレッドシートの内容で判断します</strong></p>
+            </div>
+            
+            <!-- スマホ用カード表示 -->
+            <div class="card-table">
+                <div class="card-row">
+                    <h4>重複がない日</h4>
+                    <div class="card-item">
+                        <span class="card-label">判定</span>
+                        <span class="card-value ok">そのままOK</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">対応</span>
+                        <span class="card-value">該当日の夏季休暇が確定</span>
+                    </div>
+                </div>
+                
+                <div class="card-row">
+                    <h4>重複がクリアされていない日</h4>
+                    <div class="card-item">
+                        <span class="card-label">判定</span>
+                        <span class="card-value ng">その日の全員NG</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">対応</span>
+                        <span class="card-value">該当日の全員が夏季休暇取得不可</span>
+                    </div>
+                </div>
+                
+                <div class="card-row">
+                    <h4>スプレッドシート自体が未作成</h4>
+                    <div class="card-item">
+                        <span class="card-label">判定</span>
+                        <span class="card-value ng">全員NG</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">対応</span>
+                        <span class="card-value">全員が夏季休暇を希望しないと判断</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- タブレット・PC用テーブル -->
+            <table class="desktop-table show-table">
+                <tr>
+                    <th>8月31日時点の状況</th>
+                    <th>判定</th>
+                    <th>対応</th>
+                </tr>
+                <tr>
+                    <td>重複がない日</td>
+                    <td class="ok">そのままOK</td>
+                    <td>該当日の夏季休暇が確定</td>
+                </tr>
+                <tr>
+                    <td>重複がクリアされていない日</td>
+                    <td class="ng">その日の全員NG</td>
+                    <td>該当日の全員が夏季休暇取得不可</td>
+                </tr>
+                <tr>
+                    <td>スプレッドシート自体が未作成</td>
+                    <td class="ng">全員NG</td>
+                    <td>全員が夏季休暇を希望しないと判断</td>
+                </tr>
+            </table>
+            
+            <div class="warning-box">
+                <h3>⚠️ 重要な注意</h3>
+                <p><strong>8月31日時点で問題があっても、延長や再調整は一切認めません</strong></p>
+                <p>十分な時間があるため、必ず期限内に完了させてください</p>
+            </div>
+        </div>
+
+        <!-- スライド9: 申請スケジュール -->
+        <div class="slide">
+            <h2>申請スケジュール</h2>
+            <div class="flow-step">
+                <strong>7月中：</strong>制度周知・各部署での初期検討
+            </div>
+            <div class="flow-step">
+                <strong>8月中：</strong>部署内で調整・スプレッドシート作成
+            </div>
+            <div class="flow-step">
+                <strong>8月31日：</strong>スプレッドシート提出・確定
+            </div>
+            <div class="flow-step">
+                <strong>9月上旬：</strong>最終承認・全職員通知
+            </div>
+            <div class="warning-box">
+                <h3>⚠️ 絶対的な期限</h3>
+                <p><strong>8月31日を過ぎた提出は一切受け付けません</strong></p>
+                <p>十分な時間があるため、必ず間に合うように調整してください</p>
+            </div>
+        </div>
+
+        <!-- スライド10: よくある質問 -->
+        <div class="slide">
+            <h2>よくある質問</h2>
+            
+            <!-- スマホ用カード表示 -->
+            <div class="card-table">
+                <div class="card-row">
+                    <h4>Q: 休診日とくっつけて取得できる？</h4>
+                    <div class="card-item">
+                        <span class="card-label">回答</span>
+                        <span class="card-value ok">可能</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">詳細</span>
+                        <span class="card-value">休診日との組み合わせで長期休暇も実現</span>
+                    </div>
+                </div>
+                
+                <div class="card-row">
+                    <h4>Q: 有給休暇の残日数に影響する？</h4>
+                    <div class="card-item">
+                        <span class="card-label">回答</span>
+                        <span class="card-value ok">影響なし</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">詳細</span>
+                        <span class="card-value">別制度のため残日数は変わらず</span>
+                    </div>
+                </div>
+                
+                <div class="card-row">
+                    <h4>Q: 8月31日を過ぎてからの調整は？</h4>
+                    <div class="card-item">
+                        <span class="card-label">回答</span>
+                        <span class="card-value ng">不可</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">詳細</span>
+                        <span class="card-value">期限後の調整は一切認めない</span>
+                    </div>
+                </div>
+                
+                <div class="card-row">
+                    <h4>Q: 分割して取得できる？</h4>
+                    <div class="card-item">
+                        <span class="card-label">回答</span>
+                        <span class="card-value ok">可能</span>
+                    </div>
+                    <div class="card-item">
+                        <span class="card-label">詳細</span>
+                        <span class="card-value">1日ずつ分けて取得も可</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- タブレット・PC用テーブル -->
+            <table class="desktop-table show-table">
+                <tr>
+                    <th>質問</th>
+                    <th>回答</th>
+                </tr>
+                <tr>
+                    <td>休診日とくっつけて取得できる？</td>
+                    <td><span class="highlight">可能</span> - 休診日との組み合わせで長期休暇も実現</td>
+                </tr>
+                <tr>
+                    <td>有給休暇の残日数に影響する？</td>
+                    <td><span class="highlight">影響なし</span> - 別制度のため残日数は変わらず</td>
+                </tr>
+                <tr>
+                    <td>8月31日を過ぎてからの調整は？</td>
+                    <td><span class="highlight">不可</span> - 期限後の調整は一切認めない</td>
+                </tr>
+                <tr>
+                    <td>分割して取得できる？</td>
+                    <td><span class="highlight">可能</span> - 1日ずつ分けて取得も可</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- スライド11: 最終確認・提出 -->
+        <div class="slide">
+            <h2>最終確認・提出</h2>
+            <div class="important-box">
+                <h3>🎯 最終指示</h3>
+                <p><strong>各部署でスプレッドシートを作成し、8月31日までに院長に提出</strong></p>
+                <p>部署内で十分に調整・確定してから提出してください</p>
+            </div>
+            <div class="info-box">
+                <h3>📋 提出前チェックポイント</h3>
+                <ul>
+                    <li><strong>同日同部署2人以内</strong>の制限を確認</li>
+                    <li><strong>既存の確定済み休暇</strong>を正確に反映</li>
+                    <li><strong>重複エラー</strong>が完全に解決済み</li>
+                    <li><strong>全職員の夏季休暇</strong>が明記されている</li>
+                </ul>
+            </div>
+            <div class="warning-box">
+                <h3>⚠️ 提出後の変更不可</h3>
+                <p><strong>提出後の変更・追加・削除は一切認めません</strong></p>
+                <p>提出前に必ず部署内で最終確認を行ってください</p>
+            </div>
+            <div class="summary-box">
+                📊 提出先：院長<br>
+                📅 期限：8月31日<br>
+                📋 対象期間：9月1日～11月30日<br>
+                ⏰ 十分な時間があります - 必ず間に合わせてください
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // パスワード認証機能
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const correctPasswords = ['ap818', 'AP818'];
+            
+            if (correctPasswords.includes(password)) {
+                document.getElementById('passwordOverlay').style.display = 'none';
+                document.getElementById('mainContent').classList.add('unlocked');
+            } else {
+                alert('パスワードが間違っています。');
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+            }
+        }
+
+        // Enterキーでパスワード認証
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // ページロード時にパスワード入力欄にフォーカス
+        window.addEventListener('load', function() {
+            document.getElementById('passwordInput').focus();
+        });
+    </script>
+</body>
+</html>
+Ss
